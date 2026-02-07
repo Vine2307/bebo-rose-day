@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Bebo ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #a6d8ff, #e6f7ff);
+    overflow: hidden;
+}
+
+/* Cover page */
+.cover {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: url('cover.jpg') center/contain no-repeat, #a6d8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.kiss-btn {
+    padding: 15px 35px;
+    font-size: 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    border-radius: 40px;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Card container */
+.card {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Flip card */
+.flip-card {
+    width: 320px;
+    height: 500px;
+    perspective: 1000px;
+    margin: auto;
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Cozy romantic card background */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe4ec, #ffd6e0, #fbe7c6);
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 40px rgba(255, 105, 135, 0.3);
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin: auto;
+}
+
+.slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/* Text */
+.names {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.date {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Roses animation */
+.rose {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- Cover -->
+
+<div class="cover" id="cover">
+    <button class="kiss-btn" onclick="openCard()">💋 Kiss to Open</button>
+</div>
+
+<!-- Card -->
+
+<div class="card" id="card">
+    <div class="flip-card">
+        <div class="flip-card-inner">
+
+```
+        <!-- Front -->
+        <div class="flip-card-front">
+            <div class="slideshow">
+                <img src="photo1.jpg" class="slide">
+                <img src="photo2.jpg" class="slide">
+                <img src="photo3.jpg" class="slide">
+            </div>
+            <div class="names">Bebo ❤️ Vinny</div>
+            <div class="date">Forever since 26 Oct 2024</div>
+        </div>
+
+        <!-- Back -->
+        <div class="flip-card-back">
+            <h2>Happy Rose Day 🌹</h2>
+            <p>
+            Teri muskaan meri duniya ka noor hai,<br>
+            Tera saath hi meri zindagi ka suroor hai,<br>
+            Is Rose Day par bas itna kehna hai,<br>
+            Tu hi meri mohabbat, tu hi mera gurur hai. 🌹
+            </p>
+        </div>
+
+    </div>
+</div>
+```
+
+</div>
+
+<!-- Local MP3 music -->
+
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openCard() {
+    document.getElementById("cover").style.display = "none";
+    document.getElementById("card").style.display = "flex";
+    document.getElementById("music").play();
+}
+
+/* Slideshow */
+let index = 0;
+let slides = document.querySelectorAll(".slide");
+
+function showSlides() {
+    slides.forEach(s => s.style.display = "none");
+    index++;
+    if (index > slides.length) index = 1;
+    slides[index - 1].style.display = "block";
+    setTimeout(showSlides, 2500);
+}
+setTimeout(showSlides, 500);
+
+/* Falling roses */
+function createRose() {
+    const rose = document.createElement("div");
+    rose.classList.add("rose");
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(rose);
+
+    setTimeout(() => rose.remove(), 8000);
+}
+setInterval(createRose, 300);
+</script>
+
+</body>
+</html>
