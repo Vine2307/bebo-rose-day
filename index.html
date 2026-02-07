@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,7 +18,11 @@ body {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: url('cover.jpg') center/contain no-repeat, #a6d8ff;
+    background-color: #a6d8ff;
+    background-image: url('cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,41 +144,43 @@ body {
 
 <body>
 
+<!-- Cover -->
 <div class="cover" id="cover">
     <button class="kiss-btn" onclick="openCard()">💋 Kiss to Open</button>
 </div>
 
+<!-- Card -->
 <div class="card" id="card">
     <div class="flip-card">
         <div class="flip-card-inner">
 
-```
-        <div class="flip-card-front">
-            <div class="slideshow">
-                <img src="photo1.jpg" class="slide">
-                <img src="photo2.jpg" class="slide">
-                <img src="photo3.jpg" class="slide">
+            <!-- Front -->
+            <div class="flip-card-front">
+                <div class="slideshow">
+                    <img src="photo1.jpg" class="slide">
+                    <img src="photo2.jpg" class="slide">
+                    <img src="photo3.jpg" class="slide">
+                </div>
+                <div class="names">Bebo ❤️ Vinny</div>
+                <div class="date">Forever since 26 Oct 2024</div>
             </div>
-            <div class="names">Bebo ❤️ Vinny</div>
-            <div class="date">Forever since 26 Oct 2024</div>
-        </div>
 
-        <div class="flip-card-back">
-            <h2>Happy Rose Day 🌹</h2>
-            <p>
-            Teri muskaan meri duniya ka noor hai,<br>
-            Tera saath hi meri zindagi ka suroor hai,<br>
-            Is Rose Day par bas itna kehna hai,<br>
-            Tu hi meri mohabbat, tu hi mera gurur hai. 🌹
-            </p>
-        </div>
+            <!-- Back -->
+            <div class="flip-card-back">
+                <h2>Happy Rose Day 🌹</h2>
+                <p>
+                Teri muskaan meri duniya ka noor hai,<br>
+                Tera saath hi meri zindagi ka suroor hai,<br>
+                Is Rose Day par bas itna kehna hai,<br>
+                Tu hi meri mohabbat, tu hi mera gurur hai. 🌹
+                </p>
+            </div>
 
+        </div>
     </div>
 </div>
-```
 
-</div>
-
+<!-- Local MP3 music -->
 <audio id="music" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
@@ -187,9 +192,9 @@ function openCard() {
     document.getElementById("music").play();
 }
 
+/* Slideshow */
 let index = 0;
 let slides = document.querySelectorAll(".slide");
-
 function showSlides() {
     slides.forEach(s => s.style.display = "none");
     index++;
@@ -199,6 +204,7 @@ function showSlides() {
 }
 setTimeout(showSlides, 500);
 
+/* Falling roses */
 function createRose() {
     const rose = document.createElement("div");
     rose.classList.add("rose");
@@ -206,7 +212,6 @@ function createRose() {
     rose.style.left = Math.random() * 100 + "vw";
     rose.style.animationDuration = (3 + Math.random() * 5) + "s";
     document.body.appendChild(rose);
-
     setTimeout(() => rose.remove(), 8000);
 }
 setInterval(createRose, 300);
